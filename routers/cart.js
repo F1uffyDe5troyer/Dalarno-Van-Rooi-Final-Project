@@ -7,7 +7,6 @@ const Auth = require("../middleware/auth");
 const router = new express.Router();
 
 //get cart items
-
 router.get("/cart", Auth, async (req, res) => {
   const owner = req.user._id;
 
