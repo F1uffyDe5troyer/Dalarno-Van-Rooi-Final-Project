@@ -19,12 +19,12 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-// app.use(userRouter)
-// app.use(itemRouter)
-// app.use(cartRouter)
+const userRouter = require('./routers/user')
+const itemRouter = require('./routers/item')
+const cartRouter = require('./routers/cart')
+
+app.use('/users',userRouter)
+app.use('/items',itemRouter)
+app.use('/cart',cartRouter)
 
 app.listen(process.env.PORT||3000, () => console.log('Server running'))
-
-// app.listen(port, () => {
-    //     console.log('server listening on port ' + port)
-    // })

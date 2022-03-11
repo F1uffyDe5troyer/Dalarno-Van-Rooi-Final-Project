@@ -7,7 +7,7 @@ const Auth = require("../middleware/auth");
 const router = new express.Router();
 
 //get cart items
-router.get("/cart", Auth, async (req, res) => {
+router.get("/", Auth, async (req, res) => {
   const owner = req.user._id;
 
   try {
@@ -23,7 +23,7 @@ router.get("/cart", Auth, async (req, res) => {
 });
 
 //add cart
-router.post("/cart", Auth, async (req, res) => {
+router.post("/", Auth, async (req, res) => {
   const owner = req.user._id;
   const { itemId, quantity } = req.body;
 
@@ -79,7 +79,7 @@ router.post("/cart", Auth, async (req, res) => {
 
 //delete item in cart
 
-router.delete("/cart/", Auth, async (req, res) => {
+router.delete("/", Auth, async (req, res) => {
   const owner = req.user._id;
  const itemId = req.query.itemId;
   try {
@@ -108,7 +108,5 @@ router.delete("/cart/", Auth, async (req, res) => {
     res.status(400).send();
   }
 });
-
-
 
 module.exports = router;

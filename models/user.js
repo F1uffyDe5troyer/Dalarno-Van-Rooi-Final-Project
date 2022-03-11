@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        minLength: 7,
+        minLength: 8,
         trim: true,
         validate(value) {
             if( value.toLowerCase().includes('password')) {
@@ -73,7 +73,6 @@ userSchema.pre('save', async function(next) {
     if (user.isModified('password')) {
         user.password = await bcrypt.hash(user.password, 8)
     }
-
     next()
 })
 

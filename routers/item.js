@@ -5,7 +5,7 @@ const Auth = require('../middleware/auth')
 const router = new express.Router()
 
 //fetch all items
-router.get('/items', async(req, res) => {
+router.get('', async(req, res) => {
     try {
         const items = await Item.find({})
         res.status(200).send(items)
@@ -15,7 +15,7 @@ router.get('/items', async(req, res) => {
 })
 
 //fetch an item
-router.get('/items/:id', async(req, res) => {
+router.get('/:id', async(req, res) => {
     try{
         const item = await Item.findOne({_id: req.params.id})
         if(!item) {
@@ -28,7 +28,7 @@ router.get('/items/:id', async(req, res) => {
 })
 
 //create an item
-router.post('/items',Auth, async(req, res) => {
+router.post('/',Auth, async(req, res) => {
     try {
         const newItem = new Item({
             ...req.body,
@@ -44,7 +44,7 @@ router.post('/items',Auth, async(req, res) => {
 
 //update an item
 
-router.patch('/items/:id', Auth, async(req, res) => {
+router.patch('/:id', Auth, async(req, res) => {
     const updates = Object.keys(req.body)
     const allowedUpdates = ['name', 'description', 'category', 'price']
 
@@ -70,7 +70,7 @@ router.patch('/items/:id', Auth, async(req, res) => {
 })
 
 //delete item
-router.delete('/items/:id', Auth, async(req, res) => {
+router.delete('/:id', Auth, async(req, res) => {
     try {
         const deletedItem = await Item.findOneAndDelete( {_id: req.params.id} )
         if(!deletedItem) {
