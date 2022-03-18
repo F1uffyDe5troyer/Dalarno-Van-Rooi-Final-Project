@@ -5,7 +5,7 @@ const Auth = require('../middleware/auth')
 const router = new express.Router()
 
 //fetch all items
-router.get('', async(req, res) => {
+router.get('/', async(req, res) => {
     try {
         const items = await Item.find({})
         res.status(200).send(items)
@@ -43,7 +43,6 @@ router.post('/',Auth, async(req, res) => {
 })
 
 //update an item
-
 router.patch('/:id', Auth, async(req, res) => {
     const updates = Object.keys(req.body)
     const allowedUpdates = ['name', 'description', 'category', 'price']

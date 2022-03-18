@@ -4,6 +4,16 @@ const Auth = require('../middleware/auth')
 
 const router = new express.Router()
 
+// Get all users
+router.get('/users', async(req, res) => {
+    try {
+        const users = await user.find({})
+        res.status(200).send(users)
+    } catch (error) {
+        res.status(400).send(error)
+    }
+})
+
 //signup
 router.post('/', async (req, res) => {
     const user = new User(req.body)
@@ -15,7 +25,6 @@ router.post('/', async (req, res) => {
         res.status(400).send(error)
     }
 })
-
 
 //login
 router.post('/login', async (req, res) => {
@@ -41,6 +50,7 @@ router.post('/logout', Auth, async (req, res) => {
     } catch (error) {
         res.status(500).send()
     }
+    return alert('Logged out')
 })
 
 //Logout All 
@@ -52,5 +62,6 @@ router.post('/logoutAll', Auth, async(req, res) => {
     } catch (error) {
         res.status(500).send()        
     }
+
 })
 module.exports = router
