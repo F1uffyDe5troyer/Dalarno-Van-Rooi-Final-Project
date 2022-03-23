@@ -1,6 +1,5 @@
 require('dotenv').config()
 
-
 const express = require('express')
 const cors = require('cors')
 // const userRouter = require('./routers/user')
@@ -29,3 +28,7 @@ app.use('/items',itemRouter)
 app.use('/cart',cartRouter)
 
 app.listen(process.env.PORT||3000, () => console.log('Server running'))
+
+app.get('/', (req, res) => {
+    res.send('Hello')
+})
