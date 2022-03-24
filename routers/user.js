@@ -14,7 +14,18 @@ router.get('/users', async(req, res) => {
     }
 })
 
+// Get users by id
+router.get('/users:id', async(req, res) => {
+    try {
+        const users = await user.find({})
+        res.status(200).send(users)
+    } catch (error) {
+        res.status(400).send(error)
+    }
+})
+
 //signup
+// this route is to /users
 router.post('/', async (req, res) => {
     const user = new User(req.body)
     try {
@@ -38,6 +49,7 @@ router.post('/login', async (req, res) => {
 })
 
 //logout
+// to logout use route /users/logout
 router.post('/logout', Auth, async (req, res) => {
    
     try {
@@ -54,6 +66,7 @@ router.post('/logout', Auth, async (req, res) => {
 })
 
 //Logout All 
+// admin logoutAll route /users/logoutAll
 router.post('/logoutAll', Auth, async(req, res) => {
     try {
         req.user.tokens = []

@@ -27,8 +27,9 @@ app.use('/users',userRouter)
 app.use('/items',itemRouter)
 app.use('/cart',cartRouter)
 
-app.listen(process.env.PORT||3000, () => console.log('Server running'))
-
 app.get('/', (req, res) => {
     res.send('Hello')
-})
+});
+
+app.listen(process.env.PORT||3000, () => console.log('Server running'))
+
